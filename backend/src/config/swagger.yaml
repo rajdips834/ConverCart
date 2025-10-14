@@ -1,0 +1,68 @@
+openapi: 3.0.0
+info:
+  title: WooCommerce Product Ingestion API
+  version: 1.0.0
+  description: API to ingest products from WooCommerce
+tags:
+  - name: Ingest
+    description: Endpoints related to product ingestion from WooCommerce
+
+paths:
+  /api/ingest:
+    get:
+      tags:
+        - Ingest
+      summary: Ingest products from WooCommerce
+      description: Fetch and ingest all products from WooCommerce.
+      responses:
+        "200":
+          description: Products ingested successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 123
+                    title:
+                      type: string
+                      example: "Product Name"
+                    price:
+                      type: number
+                      format: float
+                      example: 15.99
+                    stock_status:
+                      type: string
+                      example: "in-stock"
+                    stock_quantity:
+                      type: integer
+                      example: 100
+                    category:
+                      type: string
+                      nullable: true
+                      example: "Clothing"
+                    tags:
+                      type: array
+                      items:
+                        type: string
+                      example: ["sale", "featured"]
+                    on_sale:
+                      type: boolean
+                      example: true
+                    created_at:
+                      type: string
+                      format: date-time
+                      example: "2025-10-14T01:47:00Z"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error fetching products from WooCommerce"
