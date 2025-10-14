@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  backend:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - MONGO_URI=mongodb+srv://rajdips834:245788@cluster0.hsk06o3.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      - WC_CONSUMER_SECRET=cs_2d8cc467c5b91a80f5ed18dd3c282ee8299c9445
+      - WC_CONSUMER_KEY=ck_af82ae325fbee1c13f31eb26148f4dea473b0f77
+      - WC_BASE_URL=https://wp-multisite.convertcart.com
+
+    depends_on:
+      - mongodb
+    networks:
+      - backend-network
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - backend-network
+
+volumes:
+  mongo-data:
+    driver: local
+
+networks:
+  backend-network:
+    driver: bridge
