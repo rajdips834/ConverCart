@@ -1,6 +1,6 @@
 # Conver Cart Application
 
-This repository contains the full-stack Conver Cart application with backend and frontend services.
+This repository contains the full-stack Conver Cart application with backend and frontend services. The job of this repo is to scalably ingest data between two completely different databases and providing search functionalities.
 
 ---
 
